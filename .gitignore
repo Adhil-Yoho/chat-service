@@ -1,0 +1,10 @@
+.env
+.venv/
+venv/
+myenv/
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+usage.jsonl
+*.pyc
