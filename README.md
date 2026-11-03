@@ -159,14 +159,6 @@ Run `py conversation_mem.py` for the tool loop and `py memory_demo.py` for the 1
 - Tools: `get_order_status`, `get_customer`, `calculate_discount`, each with a JSON schema.
 - Tool loop: up to 5 rounds. All tool calls of a round run together with `asyncio.gather`. Each result goes back with its `tool_call_id`.
 - Output for "Check order 1001, look up customer C001, and calculate 15% off 200": `Tool calls in round 1: 3`, and the final answer used all three results.
-- Tool errors are returned as results, so the model can recover. Four cases from the terminal:
-
-```
-{'error': "Invalid argument: get_order_status() got an unexpected keyword argument 'orer_id'. Did you mean 'order_id'?"}
-{'error': "Invalid argument: get_customer() missing 1 required positional argument: 'customer_id'"}
-{'error': 'Amount must be non-negative and percent must be between 0 and 100'}
-{'error': 'Unknown tool: unknown_tool'}
-```
 
 - `Conversation` stores `[{"role": ..., "content": ...}]` and sends the full history on every call. Budgets: system 500, history 3000, output 1000 tokens (`max_tokens`). When the history is over budget, the last 8 messages stay and older ones are summarised into a short summary.
 - In the 15-turn run, turn 1 gave the ticket reference ABC123 and turn 15 answered "Your original ticket reference ... was ABC123". The history stayed under the budget in this run, so the saved summary was empty.
