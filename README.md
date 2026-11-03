@@ -33,24 +33,27 @@ Pydantic
 Pytest
 pytest-cov
 
-## Project Structure
+## Project structure
+
+```
 chat-service/
-│
-├── app.py
-├── llm_client.py
-├── sdk_calls.py
-├── retries_async.py
-├── conversation_mem.py
-├── memory_demo.py
-│
+├── app.py                  FastAPI backend (Task 4, plus /chat/stream and /usage)
+├── llm_client.py           sync and async clients, ask_openai, ask_claude
+├── sdk_calls.py            count_tokens, cost, usage log, streaming timing (Task 1)
+├── retries_async.py        tenacity retries, sequential vs parallel calls (Task 2)
+├── conversation_mem.py     3 tools, tool loop, Conversation class (Task 3)
+├── memory_demo.py          15-turn conversation demo (Task 3)
 ├── tests/
-│   ├── test_app.py
-│   └── test_retries.py
-│
-├── .env.example
-├── .gitignore
+│   ├── test_app.py         12 API tests with a fake LLM
+│   └── test_retries.py     2 retry tests (429 retried, 401 not)
 ├── requirements.txt
-└── README.md
+├── .env.example            template for the keys and model names
+├── .gitignore
+├── README.md
+├── .env                    your real keys, local only, not committed
+├── usage.jsonl             created at run time, not committed
+└── myenv/                  virtual environment, not committed
+```
 
 ## Setup
 
